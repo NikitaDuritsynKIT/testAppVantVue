@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import TheNav from '@/components/TheNav.vue';
 import { ref } from '@vue/reactivity';
 import { Ref } from 'vue';
 import { onMounted, onUnmounted } from 'vue';
-import categories from '../assets/categories.js'
-import TheNav from '../components/TheNav.vue'
+import categories from '../assets/categories'
 const divCategoriesBtns = ref()
 const divCategoriesContents = ref()
 
@@ -100,10 +100,10 @@ onMounted(() => {
         <div class="categories_header_wrapper">
             <div>
                 <div @click.stop.prevent="scrollCategoryBtn(undefined, true)" class="btn_scroll">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                        class="bi bi-caret-left" viewBox="0 0 16 16">
-                        <path
-                            d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-chevron-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
                     </svg>
                 </div>
             </div>
@@ -115,10 +115,10 @@ onMounted(() => {
             </div>
             <div>
                 <div @click.stop.prevent="scrollCategoryBtn()" class="btn_scroll">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                        class="bi bi-caret-right" viewBox="0 0 16 16">
-                        <path
-                            d="M6 12.796V3.204L11.481 8zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                     </svg>
                 </div>
             </div>
@@ -150,7 +150,7 @@ onMounted(() => {
 
 <style scoped>
 .btn_category_active {
-    background-color: red;
+    background-color: #76B900;
 }
 
 .wrapper {
@@ -163,9 +163,9 @@ onMounted(() => {
 
 .categories_header_wrapper {
     box-sizing: border-box;
-    padding: 5px;
-    width: 600px;
-    box-shadow: 0px 0px 4px rgb(200, 200, 200);
+    /* width: 600px; */
+    width: 100%;
+    /* box-shadow: 0px 0px 4px #76B900; */
     border-radius: 1rem;
     display: flex;
     justify-content: center;
@@ -190,35 +190,38 @@ onMounted(() => {
     padding: 0.5rem;
     border-radius: 1rem;
     margin: 0.5rem 0.3rem;
-    box-shadow: 0px 0px 4px rgb(200, 200, 200);
+    white-space: nowrap;
+    /* box-shadow: 0px 0px 4px rgb(200, 200, 200); */
 }
 
 .btn_scroll {
     cursor: pointer;
-    border-radius: 1rem;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-    margin-left: 10px;
-    box-shadow: 0px 0px 4px rgb(200, 200, 200);
+    width: 30px;
+    height: 30px;
+    margin: 0px 10px;
+    background-color: #76B900;
+    /* box-shadow: 0px 0px 4px rgb(200, 200, 200); */
 }
 
 .btn_scroll:hover {
-    background-color: rgb(196, 248, 255);
+    background-color: #16141f;
+    /* background-color: rgb(40, 40, 40); */
 }
 
 .btn_category:hover {
-    background-color: rgb(196, 248, 255);
+    background-color: #16141f;
+    /* background-color: rgb(202, 255, 196); */
 }
 
 .categories_blocks_wrapper {
-    margin: 1rem;
-    padding: 14px;
-    border-radius: 1rem;
-    box-shadow: 0px 0px 4px rgb(200, 200, 200);
+    margin: 1rem 0rem;
+    padding: 14px 0px;
+    /* border-radius: 1rem; */
+    /* box-shadow: 0px 0px 4px rgb(200, 200, 200); */
     width: 100%;
     height: 100%;
     display: flex;
@@ -228,14 +231,31 @@ onMounted(() => {
 
 }
 
+
 .categories_blocks {
     height: 100%;
     overflow: auto;
 }
 
+.categories_blocks::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.categories_blocks::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 5px rgb(255, 255, 255); */
+    background-color: #16141f;
+    border-radius: 10px;
+}
+
+.categories_blocks::-webkit-scrollbar-thumb {
+    background: #76B900;
+    border-radius: 10px;
+}
+
+
 .category_block_wrapper {
     padding: 1rem;
-
 }
 
 .category_block {
@@ -246,7 +266,7 @@ onMounted(() => {
     box-sizing: border-box;
     /* height: 600px; */
     width: 100%;
-    box-shadow: 0px 0px 4px rgb(200, 200, 200);
+    /* box-shadow: 0px 0px 4px rgb(200, 200, 200); */
     display: flex;
     flex-direction: column;
 }
@@ -265,11 +285,11 @@ onMounted(() => {
 }
 
 .category_products {
-    background-color: rgb(176, 176, 176);
+    background-color: #2D303E;
     margin: 10px;
     border-radius: 1rem;
     flex: 1 1 200px;
     /* set a fixed width for each product */
-    box-shadow: 0px 0px 4px rgb(200, 200, 200);
+    /* box-shadow: 0px 0px 4px rgb(200, 200, 200); */
 }
 </style>
